@@ -1,31 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Heart, Star, MessageCircle, Camera, Clock, CheckCircle, X } from 'lucide-react';
+import { Heart, Star, Clock, Gamepad2 } from 'lucide-react';
 
-// Sample timeline data
+// Sample timeline data with Roblox games
 const timelineData = [
   {
     date: "14 Februari 2024",
-    title: "First Date",
-    description: "Hari pertama kita bertemu dan memulai cerita indah ini. Momen yang akan selalu terkenang di hati.",
-    category: "Love",
-    icon: "💕",
-    image: "https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=400&h=300&fit=crop"
+    title: "Brookhaven RP",
+    description: "Game pertama yang kita mainkan bareng! Role-playing jadi keluarga bahagia dan bikin rumah impian kita berdua.",
+    category: "Roleplay",
+    icon: "🏠",
+    gameId: "4924922222",
+    gameUrl: "https://www.roblox.com/games/4924922222/Brookhaven-RP"
   },
   {
-    date: "March 2024",
-    title: "Our Adventure",
-    description: "Petualangan pertama kita berdua, exploring new places and creating beautiful memories together.",
-    category: "Travel",
-    icon: "✈️",
-    image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=300&fit=crop"
+    date: "March 2024", 
+    title: "Adopt Me!",
+    description: "Seru banget ngumpulin pets bareng dan trading! Kamu selalu lebih beruntung dapet legendary pets.",
+    category: "Pet Collection",
+    icon: "🐾",
+    gameId: "920587237",
+    gameUrl: "https://www.roblox.com/games/920587237/Adopt-Me"
   },
   {
     date: "April 2024",
-    title: "Special Milestone",
-    description: "Momen spesial yang membuat hubungan kita semakin kuat dan meaningful.",
-    category: "Milestone",
-    icon: "🌟",
-    image: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=400&h=300&fit=crop"
+    title: "Tower of Hell",
+    description: "Rame banget kalo kita main ini! Kamu selalu lebih cepet sampe atas, tapi aku yang sering jatoh duluan 😅",
+    category: "Parkour",
+    icon: "🗼",
+    gameId: "1962086868", 
+    gameUrl: "https://www.roblox.com/games/1962086868/Tower-of-Hell"
   }
 ];
 
@@ -39,82 +42,12 @@ const blueColorVariants = [
   'from-indigo-400 to-blue-600'
 ];
 
-// Notification Component - Enhanced for mobile
-const Notification = ({ isVisible, message, onClose }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  
-  useEffect(() => {
-    if (isVisible) {
-      setIsAnimating(true);
-    }
-  }, [isVisible]);
-  
-  const handleClose = () => {
-    setIsAnimating(false);
-    setTimeout(onClose, 300);
-  };
-  
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(handleClose, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
-  
-  if (!isVisible && !isAnimating) return null;
-  
-  return (
-    <div className={`fixed top-4 left-4 right-4 sm:top-6 sm:left-1/2 sm:right-auto sm:transform sm:-translate-x-1/2 z-50 
-      transition-all duration-300 ease-out max-w-sm sm:max-w-md mx-auto
-      ${isAnimating && isVisible ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-8 opacity-0 scale-95'}`}>
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-3 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl 
-        shadow-2xl backdrop-blur-sm border border-blue-400/30 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent rounded-xl sm:rounded-2xl"></div>
-        
-        {/* Animated background sparkles */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-2 left-4 text-blue-200 animate-pulse text-xs">✨</div>
-          <div className="absolute bottom-2 right-6 text-blue-200 animate-pulse delay-500 text-xs">⭐</div>
-          <div className="absolute top-3 right-4 text-blue-200 animate-pulse delay-1000 text-xs">💫</div>
-        </div>
-        
-        <div className="flex items-center gap-3 relative z-10">
-          <div className="relative">
-            <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-bounce" />
-            <div className="absolute inset-0 bg-white/30 rounded-full animate-ping opacity-75"></div>
-          </div>
-          
-          <div className="flex-1 min-w-0">
-            <p className="font-semibold text-sm sm:text-base">Berhasil Terkirim!</p>
-            <p className="text-blue-100 text-xs sm:text-sm truncate">{message}</p>
-          </div>
-          
-          <button 
-            onClick={handleClose}
-            className="text-blue-200 hover:text-white transition-colors duration-200 p-1 rounded-full hover:bg-white/10 flex-shrink-0"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-        
-        {/* Progress bar */}
-        <div className="absolute bottom-0 left-0 h-1 bg-blue-400 rounded-full animate-pulse w-full">
-          <div className="h-full bg-white/30 rounded-full animate-pulse"></div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Enhanced Timeline Item - Fully responsive
-const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, message, onMessageChange, onSubmit }) => {
+// Enhanced Timeline Item - Fully responsive with Roblox game embed
+const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [likeAnimation, setLikeAnimation] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [gameImageError, setGameImageError] = useState(false);
   const cardRef = useRef(null);
   
   const isEven = index % 2 === 0;
@@ -135,13 +68,22 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
     onLike(index);
     setTimeout(() => setLikeAnimation(false), 600);
   };
-  
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    try {
-      await onSubmit(`card${index}`);
-    } finally {
-      setIsSubmitting(false);
+
+  const handlePlayGame = () => {
+    window.open(data.gameUrl, '_blank');
+  };
+
+  // Multiple fallback URLs for game images
+  const getGameImageUrl = () => {
+    if (gameImageError) {
+      return `https://www.roblox.com/asset-thumbnail/image?assetId=${data.gameId}&width=768&height=432&format=png`;
+    }
+    return `https://tr.rbxcdn.com/30DAY-AvatarHeadshot-${data.gameId}-150x150-png/Png`;
+  };
+
+  const handleImageError = () => {
+    if (!gameImageError) {
+      setGameImageError(true);
     }
   };
   
@@ -176,6 +118,7 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
               {/* Category badge */}
               <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white 
                 bg-gradient-to-r ${cardColor} mb-3 shadow-md`}>
+                <Gamepad2 className="w-3 h-3 mr-1" />
                 {data.category}
               </div>
               
@@ -190,77 +133,56 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
                 {data.title}
               </h3>
               
-              {/* Image */}
-              {data.image && !imageError && (
-                <div className="relative mb-4 overflow-hidden rounded-lg">
+              {/* Roblox Game Embed */}
+              <div className="relative mb-4 overflow-hidden rounded-lg bg-slate-800 border border-slate-600">
+                <div className="aspect-video relative group">
+                  {/* Game Thumbnail/Preview */}
                   <img 
-                    src={data.image}
+                    src={`https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=${data.gameId}&fmt=png&wd=420&ht=230`}
                     alt={data.title}
-                    className="w-full h-48 object-cover"
-                    onLoad={() => setImageLoaded(true)}
-                    onError={() => setImageError(true)}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    onError={handleImageError}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent"></div>
+                  
+                  {/* Play overlay */}
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button 
+                      onClick={handlePlayGame}
+                      className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 transform hover:scale-105 transition-all duration-200 shadow-lg"
+                    >
+                      <Gamepad2 className="w-4 h-4" />
+                      Play Game
+                    </button>
+                  </div>
+                  
+                  {/* Roblox badge */}
+                  <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-bold">
+                    ROBLOX
+                  </div>
                 </div>
-              )}
+              </div>
               
               {/* Description */}
               <p className="text-slate-300 leading-relaxed text-sm mb-4">
                 {data.description}
               </p>
               
-              {/* Message input */}
-              <div className="mb-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <MessageCircle className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm font-medium text-blue-300">Pesan khusus:</span>
-                </div>
-                <textarea
-                  value={message || ""}
-                  onChange={(e) => onMessageChange(index, e.target.value)}
-                  placeholder="Tulis kenangan spesial..."
-                  className="w-full px-3 py-2 border border-slate-600 rounded-lg focus:border-blue-500 
-                    focus:outline-none transition-all duration-300 text-slate-200 placeholder-slate-400
-                    bg-slate-800/50 backdrop-blur-sm text-sm resize-none h-16"
-                  disabled={isSubmitting}
-                />
-              </div>
-              
-              {/* Action buttons */}
-              <div className="flex gap-2">
-                <button 
-                  onClick={handleSubmit}
-                  disabled={!message?.trim() || isSubmitting}
-                  className={`flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 px-4 
-                    rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 
-                    font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5
-                    disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed
-                    relative overflow-hidden text-sm`}
-                >
-                  {isSubmitting && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    </div>
-                  )}
-                  
-                  <span className={`transition-opacity duration-300 ${isSubmitting ? 'opacity-0' : 'opacity-100'}`}>
-                    Simpan
-                  </span>
-                </button>
-                
+              {/* Like button */}
+              <div className="flex justify-center">
                 <button 
                   onClick={handleLikeClick}
-                  disabled={isSubmitting}
-                  className={`bg-slate-800/70 hover:bg-slate-700/70 text-blue-400 py-2.5 px-3 
+                  className={`bg-slate-800/70 hover:bg-slate-700/70 text-blue-400 py-2.5 px-4 
                     rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg
-                    transform hover:-translate-y-0.5 relative overflow-hidden
-                    ${isLiked ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}
-                    disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed`}
+                    transform hover:-translate-y-0.5 relative overflow-hidden flex items-center gap-2
+                    ${isLiked ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}`}
                 >
                   <Heart 
                     className={`w-4 h-4 transition-all duration-300 relative z-10
                       ${isLiked ? 'fill-current scale-110' : 'hover:scale-110'}`} 
                   />
+                  <span className="relative z-10">
+                    {isLiked ? 'Liked!' : 'Like'}
+                  </span>
                   
                   {likeAnimation && (
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -274,7 +196,7 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
               {isLiked && (
                 <div className="mt-3 text-center">
                   <span className="text-blue-300 text-xs font-medium bg-slate-800/50 px-2 py-1 rounded-full">
-                    ✨ Moment ini disukai
+                    🎮 Game favorit!
                   </span>
                 </div>
               )}
@@ -319,6 +241,7 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
             {/* Category badge */}
             <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold text-white 
               bg-gradient-to-r ${cardColor} mb-6 shadow-lg relative overflow-hidden`}>
+              <Gamepad2 className="w-4 h-4 mr-2" />
               <span className="relative z-10">{data.category}</span>
             </div>
             
@@ -337,82 +260,56 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
                 group-hover:w-full transition-all duration-500 rounded-full"></div>
             </h3>
             
-            {/* Image */}
-            {data.image && !imageError && (
-              <div className="relative mb-6 group overflow-hidden rounded-2xl">
+            {/* Roblox Game Embed */}
+            <div className="relative mb-6 group overflow-hidden rounded-2xl bg-slate-800 border border-slate-600">
+              <div className="aspect-video relative">
+                {/* Game Thumbnail/Preview */}
                 <img 
-                  src={data.image}
+                  src={`https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=${data.gameId}&fmt=png&wd=420&ht=230`}
                   alt={data.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
-                  onLoad={() => setImageLoaded(true)}
-                  onError={() => setImageError(true)}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={handleImageError}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent 
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Play overlay */}
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <button 
+                    onClick={handlePlayGame}
+                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-3 transform hover:scale-105 transition-all duration-200 shadow-xl"
+                  >
+                    <Gamepad2 className="w-5 h-5" />
+                    Play on Roblox
+                  </button>
+                </div>
+                
+                {/* Roblox badge */}
+                <div className="absolute top-3 right-3 bg-red-500 text-white text-sm px-3 py-1 rounded-lg font-bold shadow-lg">
+                  ROBLOX
+                </div>
               </div>
-            )}
+            </div>
             
             {/* Description */}
             <p className="text-slate-300 leading-relaxed text-lg mb-6">
               {data.description}
             </p>
             
-            {/* Message input */}
-            <div className="relative group mb-6">
-              <div className="flex items-center gap-2 mb-2">
-                <MessageCircle className="w-4 h-4 text-blue-400" />
-                <span className="text-sm font-medium text-blue-300">Pesan khusus:</span>
-              </div>
-              <textarea
-                value={message || ""}
-                onChange={(e) => onMessageChange(index, e.target.value)}
-                placeholder="Tulis kenangan spesial yang kamu inget dari moment ini..."
-                className="w-full px-4 py-3 border-2 border-slate-600 rounded-xl focus:border-blue-500 
-                  focus:outline-none transition-all duration-300 text-slate-200 placeholder-slate-400
-                  bg-slate-800/50 backdrop-blur-sm hover:bg-slate-800/70 
-                  focus:bg-slate-800 resize-none h-20"
-                disabled={isSubmitting}
-              />
-            </div>
-            
-            {/* Action buttons */}
-            <div className="flex gap-3">
-              <button 
-                onClick={handleSubmit}
-                disabled={!message?.trim() || isSubmitting}
-                className={`flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-4 
-                  rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 
-                  font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-1 
-                  disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed
-                  relative overflow-hidden group`}
-              >
-                {isSubmitting && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  </div>
-                )}
-                
-                <span className={`transition-opacity duration-300 ${isSubmitting ? 'opacity-0' : 'opacity-100'}`}>
-                  Simpan Kenangan
-                </span>
-                
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 
-                  transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-xl"></div>
-              </button>
-              
+            {/* Like button */}
+            <div className="flex justify-center">
               <button 
                 onClick={handleLikeClick}
-                disabled={isSubmitting}
-                className={`relative bg-slate-800/70 hover:bg-slate-700/70 text-blue-400 py-3 px-4 
+                className={`relative bg-slate-800/70 hover:bg-slate-700/70 text-blue-400 py-3 px-6 
                   rounded-xl transition-all duration-300 font-medium shadow-lg hover:shadow-xl
-                  transform hover:-translate-y-1 overflow-hidden group
-                  ${isLiked ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}
-                  disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed`}
+                  transform hover:-translate-y-1 overflow-hidden group flex items-center gap-3
+                  ${isLiked ? 'bg-blue-600 text-white hover:bg-blue-700' : ''}`}
               >
                 <Heart 
                   className={`w-5 h-5 transition-all duration-300 relative z-10
                     ${isLiked ? 'fill-current scale-110' : 'group-hover:scale-110'}`} 
                 />
+                <span className="relative z-10 font-semibold">
+                  {isLiked ? 'Liked!' : 'Like This Game'}
+                </span>
                 
                 {likeAnimation && (
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -424,9 +321,9 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
             
             {/* Like status */}
             {isLiked && (
-              <div className="mt-3 text-center">
+              <div className="mt-4 text-center">
                 <span className="text-blue-300 text-sm font-medium bg-slate-800/50 px-3 py-1 rounded-full">
-                  ✨ Mahesa menyukai moment ini
+                  🎮 Salwa suka game ini!
                 </span>
               </div>
             )}
@@ -478,40 +375,11 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike, mess
 
 // Main Timeline Component
 function Timeline() {
-  const [messages, setMessages] = useState({});
   const [visibleItems, setVisibleItems] = useState(new Set());
   const [hoveredItem, setHoveredItem] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [likedItems, setLikedItems] = useState(new Set());
-  const [notification, setNotification] = useState({ show: false, message: "" });
   const timelineRef = useRef(null);
-
-  const handleMessageSubmit = async (cardIdentifier) => {
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setNotification({
-        show: true,
-        message: "Kenangan spesial berhasil disimpan! ✨"
-      });
-      
-      const cardIndex = parseInt(cardIdentifier.replace('card', ''));
-      setMessages(prev => ({
-        ...prev,
-        [cardIndex]: ""
-      }));
-    } catch (error) {
-      setNotification({
-        show: true,
-        message: "Terjadi kesalahan saat menyimpan kenangan"
-      });
-    }
-  };
-
-  const handleCloseNotification = () => {
-    setNotification({ show: false, message: "" });
-  };
 
   const handleLike = (index) => {
     setLikedItems(prev => {
@@ -523,13 +391,6 @@ function Timeline() {
       }
       return newSet;
     });
-  };
-  
-  const handleMessageChange = (index, message) => {
-    setMessages(prev => ({
-      ...prev,
-      [index]: message
-    }));
   };
   
   useEffect(() => {
@@ -571,13 +432,6 @@ function Timeline() {
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Notification */}
-      <Notification 
-        isVisible={notification.show}
-        message={notification.message}
-        onClose={handleCloseNotification}
-      />
-      
       {/* Enhanced background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-5 w-32 h-32 sm:top-20 sm:left-10 sm:w-40 sm:h-40 bg-blue-400/20 rounded-full blur-2xl animate-pulse"></div>
@@ -592,7 +446,7 @@ function Timeline() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight sm:leading-normal lg:leading-relaxed 
             font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 
             bg-clip-text text-transparent mb-4 sm:mb-6 drop-shadow-sm">
-            Jejak Langkah Kita
+            Gaming Journey Kita
           </h1>
           <div className="w-16 h-1 sm:w-24 sm:h-1.5 lg:w-32 lg:h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 
             mx-auto rounded-full shadow-lg relative overflow-hidden">
@@ -601,17 +455,19 @@ function Timeline() {
         </div>
         
         <p className="text-base sm:text-lg lg:text-xl text-slate-300 mt-4 sm:mt-6 lg:mt-10 max-w-2xl lg:max-w-3xl mx-auto px-4 leading-relaxed">
-          Setiap momen berharga yang sudah kita lalui bersama dan kenangan yang semoga saja terus kita ciptakan.
+          Game-game Roblox seru yang udah kita mainkan bareng dan bikin kita ketawa, kesel, tapi selalu fun!
         </p>
         
         {/* Enhanced decorative dots */}
         <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 space-x-2 sm:space-x-3">
-          {[...Array(5)].map((_, i) => (
+          {['🎮', '🎯', '🏆', '🌟', '🎊'].map((emoji, i) => (
             <div 
               key={i}
-              className="w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full animate-bounce shadow-lg" 
+              className="text-lg sm:text-xl animate-bounce" 
               style={{ animationDelay: `${i * 0.2}s` }} 
-            />
+            >
+              {emoji}
+            </div>
           ))}
         </div>
       </div>
@@ -626,7 +482,7 @@ function Timeline() {
         </div>
         <div className="px-4 py-2">
           <div className="flex items-center justify-between text-xs text-slate-400">
-            <span>Progress Timeline</span>
+            <span>Gaming Progress</span>
             <span>{Math.round(scrollProgress * 100)}%</span>
           </div>
         </div>
@@ -648,9 +504,6 @@ function Timeline() {
                 onHover={setHoveredItem}
                 isLiked={likedItems.has(index)}
                 onLike={handleLike}
-                message={messages[index]}
-                onMessageChange={handleMessageChange}
-                onSubmit={handleMessageSubmit}
               />
             </div>
           ))}
@@ -664,16 +517,25 @@ function Timeline() {
           <div className="mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 
               rounded-full shadow-2xl mb-6 animate-pulse">
-              <Heart className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-current" />
+              <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
             </div>
           </div>
           
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200 mb-3 sm:mb-4">
-            I treasure every moments with you 
+            Ready for More Adventures?
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-slate-400 mb-6 sm:mb-8">
-            I hope you do too! 
+            Masih banyak game seru yang belum kita explore bareng!
           </p>
+          
+          {/* Game suggestions */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto mb-8">
+            {['🎪 Carnival', '🏰 Royale High', '🚗 Jailbreak', '⚔️ Arsenal'].map((game, i) => (
+              <div key={i} className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-3 border border-slate-700/30 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105">
+                <div className="text-sm font-medium text-slate-300">{game}</div>
+              </div>
+            ))}
+          </div>
           
           {/* Decorative elements */}
           <div className="flex justify-center items-center space-x-4 sm:space-x-6 opacity-60">
@@ -685,8 +547,8 @@ function Timeline() {
           {/* Final message */}
           <div className="mt-8 sm:mt-12 p-4 sm:p-6 bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-slate-700/30 max-w-2xl mx-auto">
             <p className="text-sm sm:text-base text-slate-300 italic">
-              "Setiap kenangan yang kita buat adalah harta yang tak ternilai. 
-              Terima kasih sudah menjadi bagian dari cerita indah ini." ✨
+              "Thanks for being my gaming partner! 
+              Ga seru kalo main sendirian, lebih asik kalo bareng kamu." 🎮
             </p>
           </div>
         </div>

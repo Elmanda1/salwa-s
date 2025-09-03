@@ -24,21 +24,18 @@ function PhotoGallery() {
 
   const mockPhotoData = [
     {
-      url: "/assets/gallery/salwa1.jpg",
+      url: "/assets/gallery/salwa33.jpg",
       type: "image",
-      title: "Momen Spesial",
-      description: "Ini adalah contoh deskripsi untuk gambar pertama. Anda bisa menambahkan cerita atau penjelasan tentang momen yang tertangkap dalam foto ini."
+      description: "FOTO YG JADI BACKGROUND CHAT WA AKU. KAMU DISINI CANTIK PRETTY GORGEOUS MASYA ALLAH BGT COK, BIBIRNYA BAGUSS, MATANYA JUGAKK."
     },
     {
-      url: "/assets/gallery/salwa2.jpg",
+      url: "/assets/gallery/salwa34.jpg",
       type: "image",
-      title: "Kenangan Indah",
-      description: "Deskripsi untuk gambar kedua. Setiap foto memiliki ceritanya sendiri yang bisa Anda bagikan di sini."
+      description: "cantikk sekalii, posenya lucu gemass, bibirnya juga baguss liptintnyaa."
     },
     {
-      url: "/assets/gallery/video1.mp4",
+      url: "/assets/gallery/video/salwa.mp4",
       type: "video",
-      title: "Video Memorable",
       description: "Ini adalah contoh deskripsi untuk video. Anda bisa menjelaskan apa yang terjadi dalam video atau momen apa yang diabadikan."
     }
   ];
@@ -131,25 +128,10 @@ function PhotoGallery() {
 
                   {/* Description Section */}
                   <div className="bg-slate-900/90 backdrop-blur-sm rounded-xl p-4 sm:p-6 mx-2 sm:mx-4 border border-slate-700/50 shadow-xl">
-                    <h3 className="text-xl sm:text-2xl font-bold text-blue-400 mb-3 sm:mb-4">
-                      {selectedItem.title || "Tanpa Judul"}
-                    </h3>
                     <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 mb-3 sm:mb-4 rounded-full"></div>
-                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed opacity-90">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed opacity-90">
                       {selectedItem.description || "Belum ada deskripsi untuk item ini."}
                     </p>
-                    
-                    {/* Optional metadata */}
-                    <div className="mt-4 sm:mt-6 pt-4 border-t border-slate-700/30">
-                      <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-slate-400">
-                        <span className="bg-slate-800/50 px-2 sm:px-3 py-1 rounded-full">
-                          {selectedItem.type === 'video' ? 'Video' : 'Foto'}
-                        </span>
-                        <span className="bg-slate-800/50 px-2 sm:px-3 py-1 rounded-full">
-                          Galeri Kenangan
-                        </span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -178,7 +160,7 @@ function PhotoGallery() {
                 <div className="relative overflow-hidden">
                   <img 
                     src={item.url} 
-                    alt={item.title || `Gallery item ${index + 1}`}
+                    alt={`Gallery item ${index + 1}`}
                     className="w-full h-auto object-cover transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-110" 
                   />
                   
@@ -198,15 +180,6 @@ function PhotoGallery() {
                       </p>
                     </div>
                   </div>
-                  
-                  {/* Title overlay */}
-                  {item.title && (
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 sm:p-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <p className="text-white text-xs sm:text-sm font-medium truncate">
-                        {item.title}
-                      </p>
-                    </div>
-                  )}
                   
                   {/* Animated corner decorations - smaller on mobile */}
                   <div className="absolute top-1 sm:top-2 left-1 sm:left-2 w-4 sm:w-6 h-4 sm:h-6 border-l-2 border-t-2 border-blue-400/60 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-1 sm:-translate-x-2 -translate-y-1 sm:-translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0"></div>
