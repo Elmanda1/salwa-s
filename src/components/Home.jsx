@@ -336,7 +336,7 @@ function Home({ onStartQuiz, onNavigate }) {
                       <div className="w-full h-full rounded-full overflow-hidden bg-gray-700 flex items-center justify-center">
                         {/* Profile image */}
                         <img 
-                          src="/assets/home(3).jpg" 
+                          src="/assets/home.jpg" 
                           alt="Salwa" 
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />

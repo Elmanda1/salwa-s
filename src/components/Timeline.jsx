@@ -1,33 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Heart, Star, Clock, Gamepad2 } from 'lucide-react';
 
-// Sample timeline data with Roblox games
+// Sample timeline data dengan gambar dari direktori lokal
 const timelineData = [
   {
-    date: "14 Februari 2024",
     title: "Brookhaven RP",
     description: "Game pertama yang kita mainkan bareng! Role-playing jadi keluarga bahagia dan bikin rumah impian kita berdua.",
     category: "Roleplay",
     icon: "🏠",
-    gameId: "4924922222",
+    gameImage: "/assets/roblox/brookhaven-rp.jpg",
     gameUrl: "https://www.roblox.com/games/4924922222/Brookhaven-RP"
   },
   {
-    date: "March 2024", 
     title: "Adopt Me!",
     description: "Seru banget ngumpulin pets bareng dan trading! Kamu selalu lebih beruntung dapet legendary pets.",
     category: "Pet Collection",
     icon: "🐾",
-    gameId: "920587237",
+    gameImage: "/assets/roblox/home.jpg",
     gameUrl: "https://www.roblox.com/games/920587237/Adopt-Me"
   },
   {
-    date: "April 2024",
     title: "Tower of Hell",
     description: "Rame banget kalo kita main ini! Kamu selalu lebih cepet sampe atas, tapi aku yang sering jatoh duluan 😅",
     category: "Parkour",
     icon: "🗼",
-    gameId: "1962086868", 
+    gameImage: "/assets/roblox/tower-of-hell.jpg",
     gameUrl: "https://www.roblox.com/games/1962086868/Tower-of-Hell"
   }
 ];
@@ -42,12 +39,11 @@ const blueColorVariants = [
   'from-indigo-400 to-blue-600'
 ];
 
-// Enhanced Timeline Item - Fully responsive with Roblox game embed
+// Enhanced Timeline Item - Fully responsive dengan gambar lokal
 const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [likeAnimation, setLikeAnimation] = useState(false);
-  const [gameImageError, setGameImageError] = useState(false);
   const cardRef = useRef(null);
   
   const isEven = index % 2 === 0;
@@ -71,20 +67,6 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
 
   const handlePlayGame = () => {
     window.open(data.gameUrl, '_blank');
-  };
-
-  // Multiple fallback URLs for game images
-  const getGameImageUrl = () => {
-    if (gameImageError) {
-      return `https://www.roblox.com/asset-thumbnail/image?assetId=${data.gameId}&width=768&height=432&format=png`;
-    }
-    return `https://tr.rbxcdn.com/30DAY-AvatarHeadshot-${data.gameId}-150x150-png/Png`;
-  };
-
-  const handleImageError = () => {
-    if (!gameImageError) {
-      setGameImageError(true);
-    }
   };
   
   const cardStyle = {
@@ -122,26 +104,21 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
                 {data.category}
               </div>
               
-              {/* Date */}
-              <div className="flex items-center gap-2 mb-3">
-                <Clock className="w-4 h-4 text-blue-400" />
-                <time className="text-sm font-bold text-blue-300">{data.date}</time>
-              </div>
-              
               {/* Title */}
               <h3 className="text-lg font-bold mb-3 text-slate-100 leading-tight">
                 {data.title}
               </h3>
               
-              {/* Roblox Game Embed */}
+              {/* Roblox Game Image dari direktori lokal */}
               <div className="relative mb-4 overflow-hidden rounded-lg bg-slate-800 border border-slate-600">
                 <div className="aspect-video relative group">
-                  {/* Game Thumbnail/Preview */}
                   <img 
-                    src={`https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=${data.gameId}&fmt=png&wd=420&ht=230`}
+                    src={data.gameImage}
                     alt={data.title}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    onError={handleImageError}
+                    onError={(e) => {
+                      e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIzMCIgZmlsbD0iIzMzNDI1NSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk0YTNiOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkdhbWUgaW1hZ2Ugbm90IGZvdW5kPC90ZXh0Pjwvc3ZnPg==';
+                    }}
                   />
                   
                   {/* Play overlay */}
@@ -245,14 +222,6 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
               <span className="relative z-10">{data.category}</span>
             </div>
             
-            {/* Date */}
-            <div className="mb-6">
-              <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-5 h-5 text-blue-400" />
-                <time className="text-lg font-bold text-blue-300">{data.date}</time>
-              </div>
-            </div>
-            
             {/* Title */}
             <h3 className="text-3xl font-bold mb-6 text-slate-100 relative group leading-tight">
               {data.title}
@@ -260,15 +229,16 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
                 group-hover:w-full transition-all duration-500 rounded-full"></div>
             </h3>
             
-            {/* Roblox Game Embed */}
+            {/* Roblox Game Image dari direktori lokal */}
             <div className="relative mb-6 group overflow-hidden rounded-2xl bg-slate-800 border border-slate-600">
               <div className="aspect-video relative">
-                {/* Game Thumbnail/Preview */}
                 <img 
-                  src={`https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid=${data.gameId}&fmt=png&wd=420&ht=230`}
+                  src={data.gameImage}
                   alt={data.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={handleImageError}
+                  onError={(e) => {
+                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIzMCIgZmlsbD0iIzMzNDI1NSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk0YTNiOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkdhbWUgaW1hZ2Ugbm90IGZvdW5kPC90ZXh0Pjwvc3ZnPg==';
+                  }}
                 />
                 
                 {/* Play overlay */}
@@ -377,7 +347,6 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
 function Timeline() {
   const [visibleItems, setVisibleItems] = useState(new Set());
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [likedItems, setLikedItems] = useState(new Set());
   const timelineRef = useRef(null);
 
@@ -417,19 +386,6 @@ function Timeline() {
     return () => observer.disconnect();
   }, []);
   
-  useEffect(() => {
-    const handleScroll = () => {
-      if (timelineRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-        const progress = scrollTop / (scrollHeight - clientHeight);
-        setScrollProgress(progress);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Enhanced background elements */}
@@ -443,10 +399,10 @@ function Timeline() {
       {/* Enhanced header */}
       <div className="text-center py-12 sm:py-16 lg:py-20 relative z-10 px-4">
         <div className="inline-block">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight sm:leading-normal lg:leading-relaxed 
+          <h1 className="text-3xl pb-2 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight sm:leading-normal lg:leading-relaxed 
             font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 
             bg-clip-text text-transparent mb-4 sm:mb-6 drop-shadow-sm">
-            Gaming Journey Kita
+            Rekomendasi Game Roblox
           </h1>
           <div className="w-16 h-1 sm:w-24 sm:h-1.5 lg:w-32 lg:h-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-600 
             mx-auto rounded-full shadow-lg relative overflow-hidden">
@@ -455,37 +411,8 @@ function Timeline() {
         </div>
         
         <p className="text-base sm:text-lg lg:text-xl text-slate-300 mt-4 sm:mt-6 lg:mt-10 max-w-2xl lg:max-w-3xl mx-auto px-4 leading-relaxed">
-          Game-game Roblox seru yang udah kita mainkan bareng dan bikin kita ketawa, kesel, tapi selalu fun!
+          Game-game Roblox seru yang bisa kita cobain bareng-bareng, ada yang horror, ada yang challenging, ada juga yang puzzle!
         </p>
-        
-        {/* Enhanced decorative dots */}
-        <div className="flex justify-center mt-4 sm:mt-6 lg:mt-8 space-x-2 sm:space-x-3">
-          {['🎮', '🎯', '🏆', '🌟', '🎊'].map((emoji, i) => (
-            <div 
-              key={i}
-              className="text-lg sm:text-xl animate-bounce" 
-              style={{ animationDelay: `${i * 0.2}s` }} 
-            >
-              {emoji}
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      {/* Mobile timeline progress indicator */}
-      <div className="block md:hidden sticky top-0 z-20 bg-slate-900/90 backdrop-blur-sm border-b border-slate-700/50">
-        <div className="h-1 bg-slate-700">
-          <div 
-            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-300"
-            style={{ width: `${scrollProgress * 100}%` }}
-          />
-        </div>
-        <div className="px-4 py-2">
-          <div className="flex items-center justify-between text-xs text-slate-400">
-            <span>Gaming Progress</span>
-            <span>{Math.round(scrollProgress * 100)}%</span>
-          </div>
-        </div>
       </div>
       
       {/* Timeline container */}

@@ -97,7 +97,7 @@ function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
               
               {/* Button text */}
-              <span className="relative z-10 tracking-wide text-sm sm:text-base">Lihat Kenangan Kita</span>
+              <span className="relative z-10 tracking-wide text-sm sm:text-base">Quiz</span>
               
               {/* Premium shine effect */}
               <div className="absolute inset-0 -top-1 -left-1 bg-gradient-to-r from-transparent via-white/30 to-transparent w-6 h-full transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[300%] transition-transform duration-700"></div>

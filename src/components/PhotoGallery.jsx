@@ -22,23 +22,90 @@ function PhotoGallery() {
     setSelectedItem(null);
   };
 
-  const mockPhotoData = [
-    {
-      url: "/assets/gallery/salwa33.jpg",
-      type: "image",
-      description: "FOTO YG JADI BACKGROUND CHAT WA AKU. KAMU DISINI CANTIK PRETTY GORGEOUS MASYA ALLAH BGT COK, BIBIRNYA BAGUSS, MATANYA JUGAKK."
-    },
-    {
-      url: "/assets/gallery/salwa34.jpg",
-      type: "image",
-      description: "cantikk sekalii, posenya lucu gemass, bibirnya juga baguss liptintnyaa."
-    },
-    {
-      url: "/assets/gallery/video/salwa.mp4",
-      type: "video",
-      description: "Ini adalah contoh deskripsi untuk video. Anda bisa menjelaskan apa yang terjadi dalam video atau momen apa yang diabadikan."
-    }
-  ];
+const mockPhotoData = [
+  {
+    url: "/assets/gallery/salwa33.jpg",
+    type: "image",
+    description: "FOTO YG JADI BACKGROUND CHAT WA AKU. KAMU DISINI CANTIK PRETTY GORGEOUS MASYA ALLAH BGT COK, BIBIRNYA BAGUSS, MATANYA JUGAKK."
+  },
+  {
+    url: "/assets/gallery/salwa34.jpg",
+    type: "image",
+    description: "cantikk sekalii, posenya lucu gemass, bibirnya juga baguss liptintnyaa."
+  },
+  {
+    url: "/assets/video/salwa.mp4",
+    type: "video",
+    description: "Ini adalah contoh deskripsi untuk video. Anda bisa menjelaskan apa yang terjadi dalam video atau momen apa yang diabadikan."
+  },
+  { url: "/assets/gallery/salwa10.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa11.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa12.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa13.JPG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa14.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa15.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa16.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa17.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa18.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa19.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa1.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa20.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa21.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa22.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa23.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa24.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa25.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa26.JPG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa27.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa28.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa29.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa2.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa30.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa31.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa32.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa35.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa36.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa37.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa38.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa39.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa3.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa40.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa41.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa42.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa43.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa44.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa45.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa46.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa47.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa48.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa49.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa4.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa50.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa51.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa52.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa53.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa54.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa55.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa56.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa57.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa58.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa59.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa5.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa60.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa61.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa62.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa63.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa64.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa65.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa66.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa67.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa68.jpeg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa6.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa7.jpg", type: "image", description: "" },
+  { url: "/assets/gallery/salwa8.PNG", type: "image", description: "" },
+  { url: "/assets/gallery/salwa9.jpg", type: "image", description: "" }
+];
+
 
   // Shuffle array function
   const shuffleArray = (array) => {
@@ -77,7 +144,7 @@ function PhotoGallery() {
         <div className="max-w-7xl mx-auto">
           {/* Header Section - responsive */}
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-relaxed font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 
+            <h1 className="text-4xl pb-2 sm:text-5xl md:text-6xl lg:text-7xl leading-relaxed font-bold bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 
               bg-clip-text text-transparent mb-5 drop-shadow-sm px-4">
               Galeri Kenangan
             </h1>
@@ -107,13 +174,31 @@ function PhotoGallery() {
                   <div className="flex justify-center mb-4 sm:mb-6">
                     {selectedItem.type === 'video' ? (
                       <div className="relative bg-black rounded-lg overflow-hidden max-h-[50vh] sm:max-h-[60vh] w-full max-w-4xl">
-                        <div className="flex items-center justify-center h-[40vh] sm:h-[60vh] bg-gradient-to-r from-blue-600 to-indigo-600">
+                        <video 
+                          className="w-full h-full max-h-[50vh] sm:max-h-[60vh] object-contain"
+                          controls
+                          autoPlay={false}
+                          preload="metadata"
+                          onError={(e) => {
+                            console.error('Video failed to load:', e);
+                            e.target.style.display = 'none';
+                            e.target.nextElementSibling.style.display = 'flex';
+                          }}
+                        >
+                          <source src={selectedItem.url} type="video/mp4" />
+                          <source src={selectedItem.url} type="video/webm" />
+                          <source src={selectedItem.url} type="video/ogg" />
+                          Your browser does not support the video tag.
+                        </video>
+                        
+                        {/* Fallback for video error */}
+                        <div className="hidden items-center justify-center h-[40vh] sm:h-[60vh] bg-gradient-to-r from-blue-600 to-indigo-600">
                           <div className="text-white text-center p-4">
                             <svg className="w-12 sm:w-16 h-12 sm:h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M8 5v14l11-7z"/>
                             </svg>
-                            <p className="text-lg sm:text-xl font-semibold">Video Player</p>
-                            <p className="text-xs sm:text-sm opacity-80">Click to play video</p>
+                            <p className="text-lg sm:text-xl font-semibold">Video tidak dapat dimuat</p>
+                            <p className="text-xs sm:text-sm opacity-80">Periksa lokasi file video</p>
                           </div>
                         </div>
                       </div>
@@ -122,6 +207,9 @@ function PhotoGallery() {
                         src={selectedItem.url}
                         alt="Gallery image"
                         className="max-h-[50vh] sm:max-h-[60vh] max-w-full object-contain rounded-lg shadow-2xl"
+                        onError={(e) => {
+                          e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzNDI1NSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk0YTNiOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+                        }}
                       />
                     )}
                   </div>
@@ -156,13 +244,46 @@ function PhotoGallery() {
                 onMouseLeave={handleMouseLeave}
                 onClick={() => handleItemClick(item)}
               >
-                {/* Image Container with enhanced effects */}
+                {/* Image/Video Container with enhanced effects */}
                 <div className="relative overflow-hidden">
-                  <img 
-                    src={item.url} 
-                    alt={`Gallery item ${index + 1}`}
-                    className="w-full h-auto object-cover transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-110" 
-                  />
+                  {item.type === 'video' ? (
+                    // Video thumbnail with proper poster
+                    <div className="relative">
+                      <video 
+                        className="w-full h-auto object-cover transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-110"
+                        muted
+                        preload="metadata"
+                        onError={(e) => {
+                          // Fallback to placeholder if video fails to load
+                          const placeholder = document.createElement('div');
+                          placeholder.className = 'w-full h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center';
+                          placeholder.innerHTML = `
+                            <div class="text-center text-slate-400">
+                              <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                              </svg>
+                              <p class="text-sm">Video Preview</p>
+                            </div>
+                          `;
+                          e.target.parentNode.appendChild(placeholder);
+                          e.target.style.display = 'none';
+                        }}
+                      >
+                        <source src={item.url} type="video/mp4" />
+                        <source src={item.url} type="video/webm" />
+                        <source src={item.url} type="video/ogg" />
+                      </video>
+                    </div>
+                  ) : (
+                    <img 
+                      src={item.url} 
+                      alt={`Gallery item ${index + 1}`}
+                      className="w-full h-auto object-cover transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-110"
+                      onError={(e) => {
+                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzMzNDI1NSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk0YTNiOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vdCBmb3VuZDwvdGV4dD48L3N2Zz4=';
+                      }}
+                    />
+                  )}
                   
                   {/* Multi-layer gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-blue-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
@@ -176,7 +297,7 @@ function PhotoGallery() {
                     <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-300 p-2 sm:p-4">
                       <p className="text-xs sm:text-sm font-semibold bg-black/50 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-full">
                         <span className="sm:hidden">Tap</span>
-                        <span className="hidden sm:inline">Klik</span> untuk melihat
+                        <span className="hidden sm:inline">Klik</span> untuk {item.type === 'video' ? 'putar' : 'melihat'}
                       </p>
                     </div>
                   </div>

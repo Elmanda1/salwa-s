@@ -7,7 +7,7 @@
 
     const navItems = [
       { id: 'home', label: 'Home' },
-      { id: 'timeline', label: 'Timeline' },
+      { id: 'timeline', label: 'Rekomendasi' },
       { id: 'gallery', label: 'Galeri Foto' }
     ];
 

@@ -318,16 +318,6 @@ function QuizPage() {
                     <p className="text-sm md:text-base text-slate-300 font-medium">Kenangan tentang Salwa</p>
                   </div>
                 </div>
-                <div className="text-center bg-gradient-to-r from-blue-500/20 to-indigo-500/20 px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl border border-blue-400/30 backdrop-blur-sm">
-                  <p className="text-sm font-bold text-slate-100">
-                    {answerStatus === 'correct' ? '✅ Bener banget, Hesa!' : '❌ Kurang tepat!'}
-                  </p>
-                  {answerStatus === 'incorrect' && (
-                    <p className="text-xs text-slate-300 mt-1">
-                      Jawabannya: {currentQuestion.correctAnswer}
-                    </p>
-                  )}
-                </div>
               </div>
             </div>
           </div>
@@ -437,16 +427,6 @@ function QuizPage() {
                 <h3 className="font-bold text-slate-100 text-base md:text-lg">Salwey</h3>
                 <p className="text-xs md:text-sm text-emerald-400 font-medium">● online</p>
               </div>
-            </div>
-            <div className="text-center bg-gradient-to-r from-blue-500/20 to-indigo-500/20 px-3 md:px-4 py-2 rounded-full border border-blue-400/30 backdrop-blur-sm">
-              <p className="text-xs md:text-sm font-bold text-slate-100">
-                {answerStatus === 'correct' ? '✅ Bener banget!' : '❌ Kurang tepat!'}
-              </p>
-              {answerStatus === 'incorrect' && (
-                <p className="text-xs text-slate-300 mt-1">
-                  Jawabannya: {quizQuestions[currentQuestionIndex].correctAnswer}
-                </p>
-              )}
             </div>
           </div>
 
@@ -559,7 +539,7 @@ function QuizPage() {
               <h2 className="text-4xl font-bold text-slate-100 mb-4" style={{
                 fontFamily: '"Playfair Display", "Georgia", "Times New Roman", serif'
               }}>
-                Kuis Selesai!
+                Quiz Selesai!
               </h2>
               <div className="text-xl text-slate-300 mb-8">
                 Skor Akhir: <span className="font-bold text-blue-400 text-3xl">{score}</span> dari {quizQuestions.length}
@@ -574,7 +554,7 @@ function QuizPage() {
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                <span className="relative z-10 tracking-wide">✨ Lanjutkan Petualangan ✨</span>
+                <span className="relative z-10 tracking-wide"> Lanjutkan ke Galeri</span>
                 <div className="absolute inset-0 -top-1 -left-1 bg-gradient-to-r from-transparent via-white/30 to-transparent w-6 h-full transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[300%] transition-transform duration-700"></div>
               </button>
             </div>
