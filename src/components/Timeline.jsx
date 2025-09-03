@@ -1,33 +1,117 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Heart, Star, Clock, Gamepad2 } from 'lucide-react';
 
-// Sample timeline data dengan gambar dari direktori lokal
 const timelineData = [
   {
-    title: "Brookhaven RP",
-    description: "Game pertama yang kita mainkan bareng! Role-playing jadi keluarga bahagia dan bikin rumah impian kita berdua.",
-    category: "Roleplay",
-    icon: "🏠",
-    gameImage: "/assets/roblox/brookhaven-rp.jpg",
-    gameUrl: "https://www.roblox.com/games/4924922222/Brookhaven-RP"
-  },
-  {
-    title: "Adopt Me!",
-    description: "Seru banget ngumpulin pets bareng dan trading! Kamu selalu lebih beruntung dapet legendary pets.",
-    category: "Pet Collection",
-    icon: "🐾",
-    gameImage: "/assets/roblox/home.jpg",
-    gameUrl: "https://www.roblox.com/games/920587237/Adopt-Me"
-  },
-  {
     title: "Tower of Hell",
-    description: "Rame banget kalo kita main ini! Kamu selalu lebih cepet sampe atas, tapi aku yang sering jatoh duluan 😅",
+    description:
+      "Rame banget kalo kita main ini! Kamu selalu lebih cepet sampe atas, tapi aku yang sering jatoh duluan 😅",
     category: "Parkour",
     icon: "🗼",
-    gameImage: "/assets/roblox/tower-of-hell.jpg",
+    gameImage: "/assets/roblox/1.png",
     gameUrl: "https://www.roblox.com/games/1962086868/Tower-of-Hell"
+  },
+  {
+    title: "Tandem",
+    description:
+      "Obby unik di mana kita naik sepeda tandem. Satu ngatur arah, satunya ngatur pedal dan rem. Seru banget karena harus kompak!",
+    category: "Teamwork Obby",
+    icon: "🚲",
+    gameImage: "/assets/roblox/2.png",
+    gameUrl: "https://www.roblox.com/games/6718939346/Tandem"
+  },
+  {
+    title: "Roll a Friend",
+    description:
+      "Game absurd tapi lucu! Kita harus gulung satu sama lain kayak bola biar bisa lewat rintangan.",
+    category: "Funny Obby",
+    icon: "⚽",
+    gameImage: "/assets/roblox/3.png",
+    gameUrl: "https://www.roblox.com/games/6940985180/Roll-a-Friend"
+  },
+  {
+    title: "Experience Gravity",
+    description:
+      "Santai banget! Kita bisa ngobrol sambil ngambang di luar angkasa dan main-main dengan gravitasi rendah.",
+    category: "Chill",
+    icon: "🌌",
+    gameImage: "/assets/roblox/4.png",
+    gameUrl: "https://www.roblox.com/games/1962085437/Experience-Gravity"
+  },
+  {
+    title: "Adventure Story",
+    description:
+      "RPG kooperatif! Kita bisa lawan musuh bareng, kumpulin kartu, dan jadi tim paling solid.",
+    category: "RPG",
+    icon: "🃏",
+    gameImage: "/assets/roblox/5.png",
+    gameUrl: "https://www.roblox.com/games/3587619225/Adventure-Story"
+  },
+  {
+    title: "Entry Point",
+    description:
+      "Main heist bareng-bareng! Bisa pilih mau main stealth atau hajar musuh langsung. Kerja tim penting banget di sini.",
+    category: "Heist",
+    icon: "🕵️",
+    gameImage: "/assets/roblox/6.png",
+    gameUrl: "https://www.roblox.com/games/4458803037/Entry-Point"
+  },
+  {
+    title: "Stop It, Slender!",
+    description:
+      "Game horor klasik Roblox. Cari halaman bareng-bareng sambil berusaha kabur dari Slenderman.",
+    category: "Horror",
+    icon: "👻",
+    gameImage: "/assets/roblox/7.png",
+    gameUrl: "https://www.roblox.com/games/308697938/Stop-it-Slender-2"
+  },
+  {
+    title: "Incognito",
+    description:
+      "Game strategi sosial: kita harus nyamar jadi NPC biar gak ketahuan. Lucu dan tegang kalau bareng!",
+    category: "Social Strategy",
+    icon: "🎭",
+    gameImage: "/assets/roblox/8.png",
+    gameUrl: "https://www.roblox.com/games/127720196/Incognito"
+  },
+  {
+    title: "Isolator",
+    description:
+      "Puzzle dua pemain dengan tema eksperimen psikologis. Kita harus saling komunikasiin kode biar bisa kabur bareng!",
+    category: "Puzzle",
+    icon: "🧩",
+    gameImage: "/assets/roblox/9.png",
+    gameUrl: "https://www.roblox.com/games/4591014840/Isolator"
+  },
+  {
+    title: "The Maze",
+    description:
+      "Game horror survival. Kita masuk ke gua gelap, cuma bawa senter, dan harus bareng-bareng kabur dari monster. Deg-degan tapi seru kalau berdua!",
+    category: "Horror",
+    icon: "🕯️",
+    gameImage: "/assets/roblox/10.png",
+    gameUrl: "https://www.roblox.com/games/295798546/The-Maze"
+  },
+  {
+    title: "2 Player Teamwork Obby",
+    description:
+      "Classic teamwork obby. Kita harus bantuin satu sama lain untuk buka jalan dan lanjut level berikutnya.",
+    category: "Teamwork Obby",
+    icon: "🤝",
+    gameImage: "/assets/roblox/11.png",
+    gameUrl: "https://www.roblox.com/games/6783612601/2-Player-Teamwork-Obby"
+  },
+  {
+    title: "Pull a Friend",
+    description:
+      "Satu narik, satu ditarik. Bareng-bareng kita harus lewatin obstacle biar bisa finish!",
+    category: "Funny Obby",
+    icon: "🪢",
+    gameImage: "/assets/roblox/12.png",
+    gameUrl: "https://www.roblox.com/games/6513337343/Pull-a-Friend"
   }
 ];
+
 
 // Blue color variations for consistent theming
 const blueColorVariants = [
@@ -130,11 +214,6 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
                       <Gamepad2 className="w-4 h-4" />
                       Play Game
                     </button>
-                  </div>
-                  
-                  {/* Roblox badge */}
-                  <div className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-bold">
-                    ROBLOX
                   </div>
                 </div>
               </div>
@@ -250,11 +329,6 @@ const TimelineItem3D = ({ data, index, isVisible, onHover, isLiked, onLike }) =>
                     <Gamepad2 className="w-5 h-5" />
                     Play on Roblox
                   </button>
-                </div>
-                
-                {/* Roblox badge */}
-                <div className="absolute top-3 right-3 bg-red-500 text-white text-sm px-3 py-1 rounded-lg font-bold shadow-lg">
-                  ROBLOX
                 </div>
               </div>
             </div>
@@ -441,41 +515,10 @@ function Timeline() {
       <div className="text-center py-12 sm:py-16 lg:py-20 relative px-4">
         <div className="absolute inset-0 bg-gradient-to-t from-slate-800/30 via-slate-900/10 to-transparent"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 
-              rounded-full shadow-2xl mb-6 animate-pulse">
-              <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-            </div>
-          </div>
-          
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200 mb-3 sm:mb-4">
-            Ready for More Adventures?
-          </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-slate-400 mb-6 sm:mb-8">
-            Masih banyak game seru yang belum kita explore bareng!
-          </p>
-          
-          {/* Game suggestions */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-2xl mx-auto mb-8">
-            {['🎪 Carnival', '🏰 Royale High', '🚗 Jailbreak', '⚔️ Arsenal'].map((game, i) => (
-              <div key={i} className="bg-slate-800/50 backdrop-blur-sm rounded-lg p-3 border border-slate-700/30 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105">
-                <div className="text-sm font-medium text-slate-300">{game}</div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Decorative elements */}
-          <div className="flex justify-center items-center space-x-4 sm:space-x-6 opacity-60">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-blue-400"></div>
-            <Star className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 animate-spin" style={{ animationDuration: '8s' }} />
-            <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-indigo-400"></div>
-          </div>
-          
           {/* Final message */}
           <div className="mt-8 sm:mt-12 p-4 sm:p-6 bg-slate-800/30 backdrop-blur-sm rounded-2xl border border-slate-700/30 max-w-2xl mx-auto">
-            <p className="text-sm sm:text-base text-slate-300 italic">
-              "Thanks for being my gaming partner! 
-              Ga seru kalo main sendirian, lebih asik kalo bareng kamu." 🎮
+            <p className="text-base sm:text-base text-slate-300 italic">
+              I cherish every moment that we had, and i hope you do too! 
             </p>
           </div>
         </div>
